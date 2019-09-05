@@ -16,7 +16,7 @@ public class UsuarioDAO {
 	
 	public void cadastrar (Usuario usuario) {
 		//Monta sql
-		String sql = "INSERT INTO USUARIO (nome, loguin, senha) values (?,?,?)";
+		String sql = "INSERT INTO USUARIO (nome, login, senha) values (?,?,?)";
 		
 		// constroi o PreparedStatement com o sql
 		
@@ -25,7 +25,7 @@ public class UsuarioDAO {
 			PreparedStatement preparador = con.prepareStatement(sql);
 			
 			preparador.setString(1, usuario.getNome());
-			preparador.setString(2, usuario.getLoguin());
+			preparador.setString(2, usuario.getLogin());
 			preparador.setString(3, usuario.getSenha());
 			
 			preparador.execute();
@@ -42,7 +42,7 @@ public class UsuarioDAO {
 	
 	public void alterar (Usuario usuario) {
 		//Monta sql
-		String sql = "UPDATE USUARIO SET nome=?, loguin=?, senha=? WHERE id=?";
+		String sql = "UPDATE USUARIO SET nome=?, login=?, senha=? WHERE id=?";
 		
 		// constroi o PreparedStatement com o sql
 		
@@ -51,7 +51,7 @@ public class UsuarioDAO {
 			PreparedStatement preparador = con.prepareStatement(sql);
 			
 			preparador.setString(1, usuario.getNome());
-			preparador.setString(2, usuario.getLoguin());
+			preparador.setString(2, usuario.getLogin());
 			preparador.setString(3, usuario.getSenha());
 			preparador.setInt(4, usuario.getId());
 			
@@ -114,7 +114,7 @@ public class UsuarioDAO {
 						
 				usu.setId(resultado.getInt("id"));
 				usu.setNome(resultado.getString("nome"));
-				usu.setLoguin(resultado.getString("loguin"));
+				usu.setLogin(resultado.getString("login"));
 				usu.setSenha(resultado.getString("senha"));
 			
 				lista.add(usu);
@@ -151,7 +151,7 @@ public class UsuarioDAO {
 				usuario = new Usuario();
 				usuario.setId(resultado.getInt("id"));
 				usuario.setNome(resultado.getString("nome"));
-				usuario.setLoguin(resultado.getString("loguin"));
+				usuario.setLogin(resultado.getString("login"));
 				usuario.setSenha(resultado.getString("Senha"));
 			
 			}
@@ -168,12 +168,12 @@ public class UsuarioDAO {
 	
 	public Usuario autenticar (Usuario usuario) {
 		
-		String sql = "SELECT * FROM Usuario WHERE loguin = ? and senha= ?";
+		String sql = "SELECT * FROM Usuario WHERE login = ? and senha= ?";
 		Usuario usuarioRetorno=null;
 		
 		try {
 			PreparedStatement preparador = con.prepareStatement(sql);
-			preparador.setString(1, usuario.getLoguin());
+			preparador.setString(1, usuario.getLogin());
 			preparador.setString(2, usuario.getSenha());
 			
 			ResultSet resultado = preparador.executeQuery();
@@ -183,7 +183,7 @@ public class UsuarioDAO {
 				usuarioRetorno = new Usuario();
 				usuarioRetorno.setId(resultado.getInt("id"));
 				usuarioRetorno.setNome(resultado.getString("nome"));
-				usuarioRetorno.setLoguin(resultado.getString("loguin"));
+				usuarioRetorno.setLogin(resultado.getString("login"));
 				usuarioRetorno.setSenha(resultado.getString("senha"));
 			}
 		} catch (SQLException e) {
@@ -193,11 +193,11 @@ public class UsuarioDAO {
 	}
 	
 	public Boolean existeUsuario(Usuario usuario) {
-		String sql = "SELECT * FROM Usuario WHERE loguin = ? and senha = ?";
+		String sql = "SELECT * FROM Usuario WHERE login = ? and senha = ?";
 	
 		try {
 			PreparedStatement preparador = con.prepareStatement(sql);
-			preparador.setString(1, usuario.getLoguin());
+			preparador.setString(1, usuario.getLogin());
 			preparador.setString(2, usuario.getSenha());
 			
 			ResultSet resultado = preparador.executeQuery();

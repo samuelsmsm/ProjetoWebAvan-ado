@@ -15,13 +15,13 @@ public class TestUsuarioDAO {
 		//testExcluir();
 		//testBuscarTodos();
 		//testAutenticar();
-		testBuscarPorId();
+		//testBuscarPorId();
 	}
 
 	private static void testCadastrar() {
 		Usuario usu = new Usuario();
 		usu.setNome("Mateu");
-		usu.setLoguin("mt");
+		usu.setLogin("mt");
 		usu.setSenha("mt123");
 		
 		
@@ -34,7 +34,7 @@ public class TestUsuarioDAO {
 		Usuario usu = new Usuario();
 		usu.setId(1);
 		usu.setNome("jao");
-		usu.setLoguin("jo");
+		usu.setLogin("jo");
 		usu.setSenha("jao123");
 		
 		UsuarioDAO usuDao = new UsuarioDAO();
@@ -62,13 +62,13 @@ public class TestUsuarioDAO {
 		
 		
 		for (Usuario u: listaResultado) {
-			System.out.println(u.getId()+ " " + u.getNome() + " " + u.getLoguin() + " " + u.getSenha()+ "");
+			System.out.println(u.getId()+ " " + u.getNome() + " " + u.getLogin() + " " + u.getSenha()+ "");
 		}
 	}
 	
 	public static void testAutenticar() {
 		Usuario usuario = new Usuario();
-		usuario.setLoguin("mt");
+		usuario.setLogin("mt");
 		usuario.setSenha("mt123");
 		
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
